@@ -12,6 +12,24 @@ app.get("/", async (req, res) => {
     res.json(books)
 })
 
+app.post("/", (req, res) => {
+    const {title, genre, publisher, year, imageURL} = req.body
+
+    const newBook = models.Book.build({
+        title: title,
+        genre: genre,
+        publisher: publisher,
+        year: year,
+        imageURL: imageURL
+    })
+    newBook.save().then(savedBook => {
+        res.json({
+            success: true
+        })
+
+    })
+})
+
 
 app.listen(8080, () => {
     console.log('Server is running on Port 8080')

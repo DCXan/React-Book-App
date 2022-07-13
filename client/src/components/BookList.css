@@ -1,0 +1,18 @@
+.bookList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bookItem {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    text-align: center;
+
+}
+
+.bookItem img {
+    width: 200px;
+    margin-top: 20px;
+}
