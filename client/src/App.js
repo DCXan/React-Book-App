@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddBook from "./components/AddBook";
 import BookList from "./components/BookList";
+import Menu from "./components/Menu";
 
 class App extends Component {
 
@@ -31,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AddBook onAdd = {this.handleAdd}/>
+        {/* <AddBook onAdd = {this.handleAdd}/> */}
         <BookList books = {this.state.books}/>
       </div>
     )

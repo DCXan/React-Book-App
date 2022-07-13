@@ -1,4 +1,5 @@
 import { Component } from "react";
+import './AddBook.css'
 
 class AddBook extends Component {
 
@@ -37,7 +38,7 @@ class AddBook extends Component {
 
     render() {
         return (
-            <div>
+            <div className="addBookMenu">
                 <input type = "text" name="title" onChange={this.handleInput} placeholder="Title"/>
                 <input type = "text" name="genre" onChange={this.handleInput} placeholder="Genre"/>
                 <input type = "text" name="publisher" onChange={this.handleInput} placeholder="Publisher"/>
