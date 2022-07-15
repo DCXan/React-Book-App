@@ -7,8 +7,10 @@ function App() {
   const [books, setBooks] = useState([])
 
   const fetchBooks = async () => {
+    const userID = localStorage.getItem('userInfo')
     
-    const response = await fetch('http://localhost:8080/books')
+    const response = await fetch(`http://localhost:8080/books/${userID}`)
+    
     const result = await response.json()
     setBooks(result)
   }

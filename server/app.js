@@ -7,27 +7,30 @@ app.use(cors())
 app.use(express.json())
 const bcrypt = require("bcryptjs")
 
-app.get("/books", async (req, res) => {
-
-    const userdID = req.body.id
-
+app.get("/books/:userID", async (req, res) => {
+    
+    const userID = req.params.userID
+    console.log(userID)
     const books = await models.Book.findAll({
         where: {
-            
+            userID: userID
         }
     })
     res.json(books)
 })
 
 app.post("/books", async (req, res) => {
-    const {title, genre, publisher, year, imageURL} = req.body
+    const {title, genre, publisher, year, imageURL, userID} = req.body
+
+    console.log(req.body)
 
     const newBook = models.Book.build({
         title: title,
         genre: genre,
         publisher: publisher,
         year: year,
-        imageURL: imageURL
+        imageURL: imageURL,
+        userID: userID
     })
 
     try  {
@@ -85,13 +88,20 @@ app.post("/login", async (req, res) => {
         where: { email: email }
     })
 
-    const validCreds = await bcrypt.compare(password, user.password)
-
-    if (validCreds) {
+    if (user) {
+        const validCreds = await bcrypt.compare(password, user.password)
+    
+        if (validCreds) {
+            res.json({
+                success: true, userID: user.id
+            })
+        }
+    } else {
         res.json({
-            success: true
+            success: false, message: 'Unable to log in.'
         })
     }
+
     
     
     

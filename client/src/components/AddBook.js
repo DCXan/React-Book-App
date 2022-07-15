@@ -7,6 +7,8 @@ function AddBook() {
     const [newBook, setNewBook] = useState({})
     const navigate = useNavigate()
 
+    const userID = localStorage.getItem('userInfo')
+
     const handleInput = (e) => {
         setNewBook({
             ...newBook,        
@@ -22,7 +24,7 @@ function AddBook() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newBook)
+                body: JSON.stringify({...newBook, userID: userID})
             })
 
             const books = await response.json()

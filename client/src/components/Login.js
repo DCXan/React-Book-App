@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
 
@@ -14,7 +14,8 @@ function Login() {
         })
 
     }
-    
+
+
     const login = async () => {
 
         const response = await fetch('http://localhost:8080/login', {
@@ -28,10 +29,10 @@ function Login() {
         const result = await response.json()
 
         if (result.success) {
+            localStorage.setItem('userInfo', result.userID)}
             navigate('/')
         }
         
-    }
 
 
     return (
