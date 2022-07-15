@@ -1,31 +1,40 @@
-import { Component } from "react";
+import React, { useEffect, useState } from 'react'
 import './BookList.css'
 
-class BookList extends Component {
+function BookList(props) {
 
+    const books = props.books
 
-    render() {
+    const deleteBook = async (bookID) => {
 
-        const books = this.props.books
-        console.log(books)
-        const bookItems = books.map(book => {
-            return (
-                <li key = {book.id} className="bookItem">
-                    <b>{book.title}</b>
-                    <i>{book.year}</i>
-                    <label>{book.genre}</label>
-                    <label>{book.publisher}</label>
-                    <img src = {book.imageURL}/>
-                </li>
-            )
+        const response = await fetch(`http://localhost:8080/books/${bookID}`, {
+            method: 'DELETE'
         })
-
-        return (
-            <ul className="bookList">
-                {bookItems}
-            </ul>
-        )
+        const result = await response.json()
+        if (result.success) {
+            props.onDelete()
+        }
     }
+
+    const bookItems = books.map(book => {
+        return (
+            <li key = {book.id} className="bookItem">
+                <b>{book.title}</b>
+                <i>{book.year}</i>
+                <label>{book.genre}</label>
+                <label>{book.publisher}</label>
+                <img src = {book.imageURL}/>
+                <button onClick={() => deleteBook(book.id)}>Delete</button>
+            </li>
+        )
+    })
+
+    return (
+        <ul className="bookList">
+            {bookItems}
+        </ul>
+    )
+    
 }
 
 export default BookList

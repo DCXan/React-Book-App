@@ -1,56 +1,51 @@
-import { Component } from "react";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import './AddBook.css'
 
-class AddBook extends Component {
+function AddBook() {
 
-    constructor() {
-        super()
-        this.state = {
-        
-        }
-    }
+    const [newBook, setNewBook] = useState({})
+    const navigate = useNavigate()
 
-    handleInput = (e) => {
-        this.setState({
+    const handleInput = (e) => {
+        setNewBook({
+            ...newBook,        
             [e.target.name]: e.target.value
         })
     }
 
-    addBook = async () => {
+    const addNewBook = async () => {
 
-        
-
-        const settings = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        }
         try {
-            const response = await fetch('http://localhost:8080/books', settings)
+            const response = await fetch('http://localhost:8080/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newBook)
+            })
+
             const books = await response.json()
             if(books.success) {
-                this.props.onAdd()
+                navigate('/')
             }
         } catch(error) {
             console.log(error)
+                navigate('/add-book')
         }
     }
 
-
-    render() {
-        return (
-            <div className="addBookMenu">
-                <input type = "text" name="title" onChange={this.handleInput} placeholder="Title"/>
-                <input type = "text" name="genre" onChange={this.handleInput} placeholder="Genre"/>
-                <input type = "text" name="publisher" onChange={this.handleInput} placeholder="Publisher"/>
-                <input type = "text" name="year" onChange={this.handleInput} placeholder="Year"/>
-                <input type = "text" name="imageURL" onChange={this.handleInput} placeholder="imageURL"/>
-                <button onClick={this.addBook}>Add Book</button>
-            </div>
-        )
-    }
+    return (
+        <div className="addBookMenu">
+            <input type = "text" name="title" onChange={handleInput} placeholder="Title"/>
+            <input type = "text" name="genre" onChange={handleInput} placeholder="Genre"/>
+            <input type = "text" name="publisher" onChange={handleInput} placeholder="Publisher"/>
+            <input type = "text" name="year" onChange={handleInput} placeholder="Year"/>
+            <input type = "text" name="imageURL" onChange={handleInput} placeholder="imageURL"/>
+            <button onClick={addNewBook}>Add Book</button>
+        </div>
+    )
 }
+
 
 export default AddBook

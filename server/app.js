@@ -24,10 +24,35 @@ app.post("/books", async (req, res) => {
         imageURL: imageURL
     })
 
-    const _ = await newBook.save()
-    res.json({
+    try  {
+        const _ = await newBook.save()
+        res.json({
+                success: true
+            })
+    } catch {
+        res.json({
+            success:false, message: 'Unable to save book.'
+        })
+    }
+})
+
+app.delete("/books/:bookID", async (req, res) => {
+    const bookID = req.params.bookID
+
+    try {
+        const deletedBook = await models.Book.destroy({
+            where: {
+                id: bookID
+            }
+        })
+        res.json({
             success: true
         })
+    } catch(error) {
+        res.json({
+            success: false, message: error
+        })
+    }
 })
 
 app.post("/register", async (req, res) => {

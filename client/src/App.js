@@ -1,42 +1,28 @@
-import React, { Component } from "react";
-import AddBook from "./components/AddBook";
+import React, { useEffect, useState } from 'react'
 import BookList from "./components/BookList";
-import Menu from "./components/Menu";
 
-class App extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      books: []
-    }
-  }
+function App() {
 
-  componentDidMount() {
-    this.fetchBooks()
-  }
+  const [books, setBooks] = useState([])
 
-  fetchBooks = async () => {
+  const fetchBooks = async () => {
     
     const response = await fetch('http://localhost:8080/books')
     const result = await response.json()
-    this.setState({
-      books: result
-    })
+    setBooks(result)
   }
 
-  handleAdd = () => {
-    this.fetchBooks()
-  }
+  useEffect(() => {
+    fetchBooks()
+  }, [])
 
-  render() {
     return (
       <div>
-        {/* <AddBook onAdd = {this.handleAdd}/> */}
-        <BookList books = {this.state.books}/>
+        <BookList books = {books} onDelete = {fetchBooks}/>
       </div>
     )
-  }
+  
 }
 
 export default App
