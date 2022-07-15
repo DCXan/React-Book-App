@@ -1,0 +1,9 @@
+body {
+    display: flex;
+}
+
+.loginBlock {
+    
+    align-items: center;
+    justify-content: center;
+}

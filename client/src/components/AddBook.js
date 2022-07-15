@@ -17,6 +17,9 @@ class AddBook extends Component {
     }
 
     addBook = async () => {
+
+        
+
         const settings = {
             method: 'POST',
             headers: {
@@ -25,7 +28,7 @@ class AddBook extends Component {
             body: JSON.stringify(this.state)
         }
         try {
-            const response = await fetch('http://localhost:8080/', settings)
+            const response = await fetch('http://localhost:8080/books', settings)
             const books = await response.json()
             if(books.success) {
                 this.props.onAdd()

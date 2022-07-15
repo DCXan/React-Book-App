@@ -18,7 +18,7 @@ class App extends Component {
 
   fetchBooks = async () => {
     
-    const response = await fetch('http://localhost:8080/')
+    const response = await fetch('http://localhost:8080/books')
     const result = await response.json()
     this.setState({
       books: result

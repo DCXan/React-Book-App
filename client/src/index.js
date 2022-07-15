@@ -7,6 +7,9 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 import BaseLayout from './components/BaseLayout';
+import Register from './components/Register';
+import AddBooks from './components/AddBooks';
+import Login from './components/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +18,9 @@ root.render(
     <BaseLayout>
       <Routes>
         <Route path = "/" element = {<App/>}/>
-        <Route path = "/add-book" element = {<AddBook/>}/>
+        <Route path = "/add-book" element = {<AddBooks/>}/>
+        <Route path = "/register" element = {<Register/>}/>
+        <Route path = "/login" element = {<Login/>}/>
       </Routes>
     </BaseLayout>
     </BrowserRouter>

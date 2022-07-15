@@ -5,14 +5,15 @@ const models = require("./models")
 
 app.use(cors())
 app.use(express.json())
+const bcrypt = require("bcryptjs")
 
-app.get("/", async (req, res) => {
+app.get("/books", async (req, res) => {
 
     const books = await models.Book.findAll()
     res.json(books)
 })
 
-app.post("/", (req, res) => {
+app.post("/books", async (req, res) => {
     const {title, genre, publisher, year, imageURL} = req.body
 
     const newBook = models.Book.build({
@@ -22,12 +23,47 @@ app.post("/", (req, res) => {
         year: year,
         imageURL: imageURL
     })
-    newBook.save().then(savedBook => {
+
+    const _ = await newBook.save()
+    res.json({
+            success: true
+        })
+})
+
+app.post("/register", async (req, res) => {
+    const {email, password} = req.body
+
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, salt)
+    
+    const newUser = models.User.build({
+        email: email,
+        password: hash
+    })
+
+    const _ = await newUser.save()
+    res.json({
+            success: true
+        })
+})
+
+app.post("/login", async (req, res) => {
+    const {email, password} = req.body
+
+    const user = await models.User.findOne({
+        where: { email: email }
+    })
+
+    const validCreds = await bcrypt.compare(password, user.password)
+
+    if (validCreds) {
         res.json({
             success: true
         })
-
-    })
+    }
+    
+    
+    
 })
 
 
