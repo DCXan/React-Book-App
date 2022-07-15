@@ -9,7 +9,13 @@ const bcrypt = require("bcryptjs")
 
 app.get("/books", async (req, res) => {
 
-    const books = await models.Book.findAll()
+    const userdID = req.body.id
+
+    const books = await models.Book.findAll({
+        where: {
+            
+        }
+    })
     res.json(books)
 })
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './BookList.css'
 
 function BookList(props) {
@@ -23,7 +23,7 @@ function BookList(props) {
                 <i>{book.year}</i>
                 <label>{book.genre}</label>
                 <label>{book.publisher}</label>
-                <img src = {book.imageURL}/>
+                <img src = {book.imageURL} alt = ''/>
                 <button onClick={() => deleteBook(book.id)}>Delete</button>
             </li>
         )
