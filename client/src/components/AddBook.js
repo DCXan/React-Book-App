@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import './AddBook.css'
 
 function AddBook() {
-
+    
     const [newBook, setNewBook] = useState({})
     const navigate = useNavigate()
-
+    
     const userID = localStorage.getItem('userInfo')
 
     const handleInput = (e) => {
         setNewBook({
-            ...newBook,        
-            [e.target.name]: e.target.value
+            ...newBook,   
+            [e.target.name]: e.target.value,
+            userID: userID
         })
     }
 
@@ -24,11 +25,12 @@ function AddBook() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({...newBook, userID: userID})
+                body: JSON.stringify(newBook)
             })
 
             const books = await response.json()
             if(books.success) {
+                console.log(newBook)
                 navigate('/')
             }
         } catch(error) {

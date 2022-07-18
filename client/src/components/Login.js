@@ -30,6 +30,8 @@ function Login() {
 
         if (result.success) {
             localStorage.setItem('userInfo', result.userID)}
+            // const userID = localStorage.getItem('userInfo')
+            // console.log(userID)
             navigate('/')
         }
         

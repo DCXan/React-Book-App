@@ -18,7 +18,7 @@ root.render(
     <BaseLayout>
       <Routes>
         <Route path = "/" element = {<App/>}/>
-        <Route path = "/add-book" element = {<AddBooks/>}/>
+        <Route path = "/add-book" element = {<AddBook/>}/>
         <Route path = "/register" element = {<Register/>}/>
         <Route path = "/login" element = {<Login/>}/>
       </Routes>
