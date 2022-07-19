@@ -8,7 +8,6 @@ import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 import BaseLayout from './components/BaseLayout';
 import Register from './components/Register';
-import AddBooks from './components/AddBooks';
 import Login from './components/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
