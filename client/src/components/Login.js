@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actionCreators from '../store/creators/actionCreators'
 
-function Login() {
+function Login(props) {
 
     const [user, setUser] = useState({})
     let navigate = useNavigate()
@@ -14,7 +16,6 @@ function Login() {
         })
 
     }
-
 
     const login = async () => {
 
@@ -29,13 +30,12 @@ function Login() {
         const result = await response.json()
 
         if (result.success) {
-            localStorage.setItem('userInfo', result.userID)}
-            // const userID = localStorage.getItem('userInfo')
-            // console.log(userID)
+            const userID = result.userID
+            props.storeUserID(userID)
+            // localStorage.setItem('userInfo', result.userID)
             navigate('/')
         }
-        
-
+    }
 
     return (
         <div className='loginBlock'>
@@ -47,4 +47,11 @@ function Login() {
     )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        storeUserID: (userID) => dispatch(actionCreators.sendUserID(userID))
+
+    }
+}
+
+export default connect(null, mapDispatchToProps) (Login)

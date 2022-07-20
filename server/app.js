@@ -10,13 +10,17 @@ const bcrypt = require("bcryptjs")
 app.get("/books/:userID", async (req, res) => {
     
     const userID = req.params.userID
-    console.log(userID)
-    const books = await models.Book.findAll({
-        where: {
-            userID: userID
-        }
-    })
-    res.json(books)
+
+    try {
+        const books = await models.Book.findAll({
+            where: {
+                userID: userID
+            }
+        })
+        res.json(books)
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 app.post("/books", async (req, res) => {

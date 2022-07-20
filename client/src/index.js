@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './store/reducer';
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 import BaseLayout from './components/BaseLayout';
 import Register from './components/Register';
 import Login from './components/Login';
 
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
     <BaseLayout>
       <Routes>
@@ -23,6 +29,7 @@ root.render(
       </Routes>
     </BaseLayout>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

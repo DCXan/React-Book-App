@@ -1,21 +1,17 @@
-import { Component } from "react";
-import App from "../App";
-import AddBook from "./AddBook";
+
 import Menu from "./Menu";
 import './BaseLayout.css'
 
 
-class BaseLayout extends Component {
+function BaseLayout (props) {
 
-    render() {
-        return (
-            <div className="base">
+    return (
+        <div className="base">
                 <Menu/>
                 <h1 className="siteName">React Book App</h1>
-                {this.props.children}
+                {props.children}
             </div>
-        )
-    }
+    )
 }
 
 export default BaseLayout
