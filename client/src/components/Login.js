@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actionCreators from '../store/creators/actionCreators'
 
+
 function Login(props) {
 
     const [user, setUser] = useState({})
@@ -31,9 +32,12 @@ function Login(props) {
 
         if (result.success) {
             const userID = result.userID
-            props.storeUserID(userID)
+            console.log(userID)
+            props.onLogin(userID)
             // localStorage.setItem('userInfo', result.userID)
             navigate('/')
+        } else {
+            alert("Unable to log in. Please check your email and/or password and try again.")
         }
     }
 
@@ -41,7 +45,7 @@ function Login(props) {
         <div className='loginBlock'>
             <h2>Log In to your Book App account</h2>
             <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
-            <input type = "text" name="password" onChange={handleInput} placeholder="Password"/>
+            <input type = "password" name="password" onChange={handleInput} placeholder="Password"/>
             <button onClick={login}>Log In</button>
         </div>
     )
@@ -49,8 +53,7 @@ function Login(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        storeUserID: (userID) => dispatch(actionCreators.sendUserID(userID))
-
+        onLogin: (userID) => dispatch(actionCreators.logIn(userID))
     }
 }
 

@@ -1,2 +1,3 @@
 
-export const SENDID = 'SENDID'
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'

@@ -1,8 +1,14 @@
 import * as actionTypes from '../actions/actionTypes'
 
-export const sendUserID = (userID) => {
+export const logIn = (userID) => {
     return {
-        type: actionTypes.SENDID,
+        type: actionTypes.LOGIN,
         payload: userID
+    }
+}
+
+export const logOut = () => {
+    return {
+        type: actionTypes.LOGOUT
     }
 }
