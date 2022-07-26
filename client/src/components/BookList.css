@@ -21,14 +21,17 @@
 }
 
 .bookSearch {
-    display: flexbox;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .searchField {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 700px;
+    align-self: center;
 }
 
 .userBooks {

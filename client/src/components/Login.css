@@ -1,9 +1,26 @@
-body {
-    display: flex;
-}
 
 .loginBlock {
-    
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginInput {
+    align-self: center;
+}
+
+.registerBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.registerInput {
+    align-self: center;
+}
+
+.registerBlock h2 {
+    align-self: center;
+}
+
+.loginBlock h2 {
+    align-self: center;
 }

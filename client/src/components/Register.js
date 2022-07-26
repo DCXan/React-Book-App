@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
+import './Login.css'
 
 function Register() {
 
@@ -35,11 +36,13 @@ function Register() {
 
 
     return (
-        <div>
+        <div className='registerBlock'>
             <h2>Create a Book App account</h2>
-            <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
-            <input type = "text" name="password" onChange={handleInput} placeholder="Password"/>
-            <button onClick={createUser}>Create Account</button>
+            <div className='registerInput'>
+                <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
+                <input type = "text" name="password" onChange={handleInput} placeholder="Password"/>
+                <button onClick={createUser}>Register</button>
+            </div>
         </div>
     )
 }

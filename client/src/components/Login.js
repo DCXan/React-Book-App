@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './Login.css'
 
 function Login() {
 
@@ -40,9 +41,11 @@ function Login() {
     return (
         <div className='loginBlock'>
             <h2>Log In to your Book App account</h2>
-            <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
-            <input type = "password" name="password" onChange={handleInput} placeholder="Password"/>
-            <button onClick={login}>Log In</button>
+            <div className='loginInput'>
+                <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
+                <input type = "password" name="password" onChange={handleInput} placeholder="Password"/>
+                <button onClick={login}>Log In</button>
+            </div>
             <h3>{message}</h3>
         </div>
     )

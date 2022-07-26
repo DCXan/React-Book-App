@@ -71,37 +71,57 @@ function App(props) {
       }
   }
 
-  const bookItems = books.map(book => {
-
+  if (books != undefined) {
+    const bookItems = books.map(book => {
+  
     const imageLinks = book.volumeInfo.imageLinks
-    
-    return (
-        <li key = {book.id} className="bookItem">
-            <b>{book.volumeInfo.title}</b>
-            <label>{book.volumeInfo.authors}</label>
-            <i>{book.volumeInfo.publishedDate}</i>
-            <label>{book.volumeInfo.categories}</label>
-            <label>{book.volumeInfo.publisher}</label>
-            <img src = {imageLinks && imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : require('./images/default-cover.jpg')} alt = ''/>
-            <div className='userBooks'>
-              <button onClick={() => addToFavorites(book)}>Add to Favorites</button>
-              <button onClick={() => props.addCart(book.volumeInfo.title)}>Add to Cart</button>
+      
+      return (
+          <li key = {book.id} className="bookItem">
+              <b>{book.volumeInfo.title}</b>
+              <label>{book.volumeInfo.authors}</label>
+              <i>{book.volumeInfo.publishedDate}</i>
+              <label>{book.volumeInfo.categories}</label>
+              <label>{book.volumeInfo.publisher}</label>
+              <img src = {imageLinks && imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : require('./images/default-cover.jpg')} alt = ''/>
+              <div className='userBooks'>
+                <button onClick={() => addToFavorites(book)}>Add to Favorites</button>
+                <button onClick={() => props.addCart(book.volumeInfo.title)}>Add to Cart</button>
+              </div>
+          </li>
+      )
+    })
+      return (
+        <div className='bookSearch'>
+          <div className='searchField'>
+            <h4>Search for a Book</h4>
+            <div>
+              <input type='text' placeholder='Search for a Book' onChange={handleInput} name='bookSearch'/>
+              <button onClick={fetchBooks} className="searchButton">Search</button>
             </div>
-        </li>
-    )
-})
-
-    return (
-      <div className='bookSearch' >
-        <div className='searchField'>
-          <input type='text' placeholder='Search for a Book' onChange={handleInput} name='bookSearch'/>
-          <button onClick={fetchBooks}>Search</button>
+          </div>
+          <ul className='bookList'>
+            {bookItems}
+          </ul>
         </div>
-        <ul className='bookList'>
-          {bookItems}
-        </ul>
+      )
+  
+  } else {
+     return (
+      <div className='bookSearch'>
+      <div className='searchField'>
+        <h4>Search for a Book</h4>
+        <div>
+          <input type='text' placeholder='Search for a Book' onChange={handleInput} name='bookSearch'/>
+          <button onClick={fetchBooks} className="searchButton">Search</button>
+        </div>
       </div>
-    )
+      <h3>Your search did not match any books. Please try again.</h3>
+    </div>
+     )
+  }
+
+
   
 }
 
