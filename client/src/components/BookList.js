@@ -3,8 +3,9 @@ import './BookList.css'
 
 function BookList(props) {
 
-    const token = localStorage.getItem('jsonwebtoken')
+    const token = localStorage.getItem('jwt')
     const userID = localStorage.getItem('userID')
+    
     const [books, setBooks] = useState([])
     
     useEffect(() => {

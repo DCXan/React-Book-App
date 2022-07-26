@@ -2,17 +2,21 @@ import { NavLink } from 'react-router-dom'
 import './Menu.css'
 import { connect } from 'react-redux'
 import React from 'react'
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link, useNavigate} from 'react-router-dom';
 import * as actionCreators from '../store/creators/actionCreators'
 
 function Menu (props) {
 
+    const navigate = useNavigate()
+    const token = localStorage.getItem('jwt')
+
     const logout = () => {
 
-        props.onLogout()
+        localStorage.clear()
+        navigate('/login')
     }
 
-    if (props.isAuth) {
+    if (token) {
         return (
             <div className="menu">
                     <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
@@ -27,14 +31,11 @@ function Menu (props) {
         return (
             <div className="menu">
                     <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
-                    <div className="menu-item"><NavLink to = "/my-books">My Books</NavLink></div>
                     <div className="menu-item"><NavLink to = "/register">Register</NavLink></div>
                     <Link to = "/login">
                         <button>Log In</button>
                     </Link>
-                    <div className='cart'>
-                        Books in Cart: {props.cart.length}
-                    </div>
+                    
                 </div>
         )
     }
@@ -47,10 +48,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogout: () => dispatch(actionCreators.logOut())
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onLogout: () => dispatch(actionCreators.logOut())
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Menu)
+export default connect(mapStateToProps) (Menu)

@@ -8,7 +8,7 @@ function App(props) {
 
   const navigate = useNavigate()
 
-  const token = localStorage.getItem('jsonwebtoken')
+  const token = localStorage.getItem('jwt')
   const userID = localStorage.getItem('userID')
 
   const [books, setBooks] = useState([])

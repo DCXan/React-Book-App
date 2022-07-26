@@ -11,7 +11,7 @@ require("dotenv").config()
 app.use(cors())
 app.use(express.json())
 
-app.get("/books/:userID", async (req, res) => {
+app.get("/books/:userID", authenticate, async (req, res) => {
     
     const userID = req.params.userID
 
@@ -54,7 +54,7 @@ app.post("/books", authenticate, async (req, res) => {
     }
 })
 
-app.delete("/books/:userID/:bookID", async (req, res) => {
+app.delete("/books/:userID/:bookID", authenticate, async (req, res) => {
     const userID = req.params.userID
     const bookID = req.params.bookID
 
