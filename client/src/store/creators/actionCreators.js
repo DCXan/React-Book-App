@@ -19,3 +19,10 @@ export const addToCart = (book) => {
         payload: book
     }
 }
+
+export const cartDelete = (book) => {
+    return {
+        type: actionTypes.CART_DELETE,
+        payload: book
+    }
+}

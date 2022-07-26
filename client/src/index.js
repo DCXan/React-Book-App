@@ -13,6 +13,7 @@ import Login from './components/Login';
 import authReducer from './reducers/authenticationReducer'
 import cartReducer from './reducers/cartReducer'
 import ProtectedRoute from './components/ProtectedRoute';
+import Cart from './components/Cart';
 
 const rootReducer = combineReducers({
   authReducer: authReducer,
@@ -34,6 +35,10 @@ root.render(
         <Route path = "/my-books" element = {
           <ProtectedRoute>
             <BookList/>
+          </ProtectedRoute>}/>
+        <Route path = "/my-cart" element = {
+          <ProtectedRoute>
+            <Cart/>
           </ProtectedRoute>}/>
       </Routes>
     </BaseLayout>

@@ -13,6 +13,7 @@ function Menu (props) {
 
     const logout = () => {
 
+        props.onLogout()
         localStorage.clear()
         navigate('/login')
     }
@@ -23,8 +24,9 @@ function Menu (props) {
                 <NavLink to = "/">Home</NavLink>
                 { token ? <NavLink to = "/my-books">Favorite Books</NavLink> : null }
                 { token ? null : <NavLink to = "/register">Register</NavLink> }
-                { token ? <button className = "logout-button" onClick={logout}>Log Out</button> : <Link to = "/login"><button className='login-button'>Log In</button></Link> }
                 { token ? <div className='cart'>(<ShoppingCart/> <b className='cart-label'> {props.cart.length})</b></div> : null }
+                { token ? <NavLink to = "/my-cart">View Cart</NavLink> : null }
+                { token ? <button className = "logout-button" onClick={logout}>Log Out</button> : <Link to = "/login"><button className='login-button'>Log In</button></Link> }
             </div>
         </div>
     )

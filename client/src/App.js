@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import './components/BookList.css'
 import { useNavigate } from 'react-router-dom';
 import * as actionCreators from './store/creators/actionCreators'
-import Menu from './components/Menu';
 
 function App(props) {
 
@@ -72,11 +71,11 @@ function App(props) {
       }
   }
 
-  if (books != undefined) {
+  if (books !== undefined) {
     
     const bookItems = books.map(book => {
   
-    const imageLinks = book.volumeInfo.imageLinks
+      const imageLinks = book.volumeInfo.imageLinks
       
       return (
           <li key = {book.id} className="bookItem">
@@ -88,7 +87,7 @@ function App(props) {
               <img src = {imageLinks && imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : require('./images/default-cover.jpg')} alt = ''/>
               <div className='userBooks'>
                 <button onClick={() => addToFavorites(book)}>Add to Favorites</button>
-                <button onClick={() => props.addCart(book.volumeInfo.title)}>Add to Cart</button>
+                <button onClick={() => props.addCart(book)}>Add to Cart</button>
               </div>
           </li>
       )
@@ -130,7 +129,8 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
       isAuth: state.authReducer.isAuthenticated,
-      userID: state.authReducer.userID
+      userID: state.authReducer.userID,
+      cart: state.cartReducer.cart
   }
 }
 

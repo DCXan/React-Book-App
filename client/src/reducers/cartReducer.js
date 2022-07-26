@@ -18,7 +18,13 @@ const reducer = (state = initialState, action) => {
         }
         case actionTypes.LOGOUT:
             return {
-                ...state
+                ...state,
+                cart: []
+            }
+        case actionTypes.CART_DELETE:
+            return {
+                ...state,
+                cart: state.cart.filter(book => book.id !== action.payload.id)
             }
         default:
             return state
