@@ -49,7 +49,7 @@ function BookList(props) {
                 <label>{book.genre}</label>
                 <label>{book.publisher}</label>
                 <img src = {book.imageURL} alt = ''/>
-                <button onClick={() => deleteBook(book.id)}>Delete</button>
+                <button onClick={() => deleteBook(book.id)} className="deleteButton">Delete</button>
             </li>
         )
     })

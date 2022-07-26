@@ -1,8 +1,10 @@
 .menu {
     display: flex;
     flex-direction: row;
-    margin: 20px;
+    padding: 20px;
     justify-content: center;
+    background-color: rgb(0, 0, 0);
+    
 }
 
 .menu-item {
@@ -11,4 +13,13 @@
 
 .cart {
     align-self: flex-end;
+}
+
+.menu a {
+    color: white;
+    width: 100px;
+}
+
+.menu button {
+    width: 75px
 }

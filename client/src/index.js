@@ -7,12 +7,12 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import BookList from './components/BookList';
-import AddBook from './components/AddBook';
 import BaseLayout from './components/BaseLayout';
 import Register from './components/Register';
 import Login from './components/Login';
 import authReducer from './reducers/authenticationReducer'
 import cartReducer from './reducers/cartReducer'
+import ProtectedRoute from './components/ProtectedRoute';
 
 const rootReducer = combineReducers({
   authReducer: authReducer,
@@ -29,10 +29,12 @@ root.render(
     <BaseLayout>
       <Routes>
         <Route path = "/" element = {<App/>}/>
-        <Route path = "/add-book" element = {<AddBook/>}/>
         <Route path = "/register" element = {<Register/>}/>
         <Route path = "/login" element = {<Login/>}/>
-        <Route path = "/my-books" element = {<BookList/>}/>
+        <Route path = "/my-books" element = {
+          <ProtectedRoute>
+            <BookList/>
+          </ProtectedRoute>}/>
       </Routes>
     </BaseLayout>
     </BrowserRouter>

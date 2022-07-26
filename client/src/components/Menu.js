@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Link, useNavigate} from 'react-router-dom';
 import * as actionCreators from '../store/creators/actionCreators'
 
 function Menu (props) {
-
+    console.log('menu')
     const navigate = useNavigate()
     const token = localStorage.getItem('jwt')
 
@@ -16,37 +16,25 @@ function Menu (props) {
         navigate('/login')
     }
 
-    if (token) {
-        return (
-            <div className="menu">
-                    <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
-                    <div className="menu-item"><NavLink to = "/my-books">My Books</NavLink></div>
-                    <button onClick={logout}>Log Out</button>
-                    <div className='cart'>
-                        Books in Cart: {props.cart.length}
-                    </div>
-                </div>
-        )
-    } else {
-        return (
-            <div className="menu">
-                    <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
-                    <div className="menu-item"><NavLink to = "/register">Register</NavLink></div>
-                    <Link to = "/login">
-                        <button>Log In</button>
-                    </Link>
-                    
-                </div>
-        )
-    }
+    return (
+        <div className="menu">
+                <NavLink to = "/">Home</NavLink>
+                { token ? <NavLink to = "/my-books">My Books</NavLink> : null }
+                { token ? null : <NavLink to = "/register">Register</NavLink> }
+                { token ? <button onClick={logout}>Log Out</button> : <Link to = "/login"><button>Log In</button></Link> }
+                {/* <div className='cart'>
+                    Books in Cart: {props.cart.length}
+                </div> */}
+        </div>
+    )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isAuth: state.authReducer.isAuthenticated,
-        cart: state.cartReducer.cart
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         isAuth: state.authReducer.isAuthenticated,
+//         cart: state.cartReducer.cart
+//     }
+// }
 
 // const mapDispatchToProps = (dispatch) => {
 //     return {
@@ -54,4 +42,4 @@ const mapStateToProps = (state) => {
 //     }
 // }
 
-export default connect(mapStateToProps) (Menu)
+export default Menu

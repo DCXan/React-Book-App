@@ -1,6 +1,13 @@
+html {
+    overflow-y: scroll;
+  }
+
 body {
     background-color: rgb(184, 191, 193);
+    background-image: linear-gradient(#eb8e54, #24deaa);
+    background-attachment: fixed;
 }
+
 
 
 .siteName {

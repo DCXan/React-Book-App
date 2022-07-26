@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './components/BookList.css'
 import { useNavigate } from 'react-router-dom';
 import * as actionCreators from './store/creators/actionCreators'
+import Menu from './components/Menu';
 
 function App(props) {
 

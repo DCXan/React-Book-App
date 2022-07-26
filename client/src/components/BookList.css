@@ -1,3 +1,4 @@
+
 .bookList {
     display: flex;
     flex-wrap: wrap;
@@ -37,3 +38,8 @@
 .userBooks {
     margin-top: 10px;
 }
+ .deleteButton {
+     width: 100px;
+     align-self: center;
+     margin-top: 10px;
+ }
