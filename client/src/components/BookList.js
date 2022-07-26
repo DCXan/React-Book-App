@@ -55,9 +55,12 @@ function BookList(props) {
     })
 
     return (
-        <ul className="bookList">
-            {bookItems}
-        </ul>
+        <div>
+            <h2>My Favorites</h2>
+            <ul className="bookList">
+                {bookItems}
+            </ul>
+        </div>
     )
     
 }

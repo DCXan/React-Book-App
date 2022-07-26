@@ -55,7 +55,7 @@ function App(props) {
         imageURL: (imageLinks && imageLinks.thumbnail) ? book.volumeInfo.imageLinks.thumbnail : require('./images/default-cover.jpg'),
         userID: userID
     }
-    // setFavorite(favoriteBook)
+    
 
     const response = await fetch('http://localhost:8080/books', {
       method: 'POST',
@@ -73,6 +73,7 @@ function App(props) {
   }
 
   if (books != undefined) {
+    
     const bookItems = books.map(book => {
   
     const imageLinks = book.volumeInfo.imageLinks

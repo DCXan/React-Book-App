@@ -1,25 +1,35 @@
-.menu {
+.menu-items {
     display: flex;
     flex-direction: row;
     padding: 20px;
     justify-content: center;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);  
+    width: 100%;
+    color: white;
+    height: 25px;
     
-}
-
-.menu-item {
-    margin: 0px 20px 0px 20px;
-}
-
-.cart {
-    align-self: flex-end;
 }
 
 .menu a {
     color: white;
-    width: 100px;
+    padding: 0px 20px 0px 20px;
 }
 
-.menu button {
-    width: 75px
+.logout-button {
+    margin: 0px 0px 0px 20px;
+    height: fit-content;
 }
+
+.cart {
+    color: white;
+    margin-block-start: auto;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.cart-label {
+    margin-left: 5px;
+
+}
+

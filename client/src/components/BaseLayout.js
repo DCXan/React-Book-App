@@ -4,7 +4,7 @@ import './BaseLayout.css'
 
 
 function BaseLayout (props) {
-    console.log('baselayout')
+    
     return (
         <div className="base">
                 <Menu/>
