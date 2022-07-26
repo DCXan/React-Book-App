@@ -1,18 +1,42 @@
-import React from 'react'
+import React, { useState, useEffect }from 'react'
 import './BookList.css'
 
 function BookList(props) {
 
-    const books = props.books
+    const token = localStorage.getItem('jsonwebtoken')
+    const userID = localStorage.getItem('userID')
+    const [books, setBooks] = useState([])
+    
+    useEffect(() => {
+        getMyBooks()
+    }, [])
+
+    const getMyBooks = async () => {
+
+        const response = await fetch(`http://localhost:8080/books/${userID}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+    })
+        const result = await response.json()
+
+        if (result.success) {
+            setBooks(result.books)
+        }
+    }
 
     const deleteBook = async (bookID) => {
 
-        const response = await fetch(`http://localhost:8080/books/${bookID}`, {
-            method: 'DELETE'
+        const response = await fetch(`http://localhost:8080/books/${userID}/${bookID}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         const result = await response.json()
         if (result.success) {
-            props.onDelete()
+            getMyBooks()
         }
     }
 

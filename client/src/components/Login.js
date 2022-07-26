@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { connect } from 'react-redux'
-import * as actionCreators from '../store/creators/actionCreators'
 
-
-function Login(props) {
+function Login() {
 
     const [user, setUser] = useState({})
+    const [message, setMessage] = useState('')
     let navigate = useNavigate()
 
     const handleInput = (e) => {
@@ -15,7 +13,6 @@ function Login(props) {
             ...user,
             [e.target.name]: e.target.value
         })
-
     }
 
     const login = async () => {
@@ -32,12 +29,11 @@ function Login(props) {
 
         if (result.success) {
             const userID = result.userID
-            console.log(userID)
-            props.onLogin(userID)
-            // localStorage.setItem('userInfo', result.userID)
+            localStorage.setItem('userID', userID)
+            localStorage.setItem('jwt', result.token)
             navigate('/')
         } else {
-            alert("Unable to log in. Please check your email and/or password and try again.")
+            setMessage('Unable to log in. Please check credentials and try again.')
         }
     }
 
@@ -47,14 +43,10 @@ function Login(props) {
             <input type = "text" name="email" onChange={handleInput} placeholder="Email"/>
             <input type = "password" name="password" onChange={handleInput} placeholder="Password"/>
             <button onClick={login}>Log In</button>
+            <h3>{message}</h3>
         </div>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogin: (userID) => dispatch(actionCreators.logIn(userID))
-    }
-}
 
-export default connect(null, mapDispatchToProps) (Login)
+export default Login

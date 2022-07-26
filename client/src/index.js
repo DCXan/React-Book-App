@@ -12,9 +12,11 @@ import BaseLayout from './components/BaseLayout';
 import Register from './components/Register';
 import Login from './components/Login';
 import authReducer from './reducers/authenticationReducer'
+import cartReducer from './reducers/cartReducer'
 
 const rootReducer = combineReducers({
-  authReducer: authReducer
+  authReducer: authReducer,
+  cartReducer: cartReducer
 })
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -30,6 +32,7 @@ root.render(
         <Route path = "/add-book" element = {<AddBook/>}/>
         <Route path = "/register" element = {<Register/>}/>
         <Route path = "/login" element = {<Login/>}/>
+        <Route path = "/my-books" element = {<BookList/>}/>
       </Routes>
     </BaseLayout>
     </BrowserRouter>

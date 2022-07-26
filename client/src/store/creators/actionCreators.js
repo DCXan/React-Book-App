@@ -12,3 +12,10 @@ export const logOut = () => {
         type: actionTypes.LOGOUT
     }
 }
+
+export const addToCart = (book) => {
+    return {
+        type: actionTypes.ADD_CART,
+        payload: book
+    }
+}

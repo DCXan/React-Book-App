@@ -30,3 +30,7 @@
     flex-direction: column;
     width: 300px;
 }
+
+.userBooks {
+    margin-top: 10px;
+}

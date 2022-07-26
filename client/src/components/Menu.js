@@ -16,10 +16,10 @@ function Menu (props) {
         return (
             <div className="menu">
                     <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
-                    <div className="menu-item"><NavLink to = "/add-book">Add Book</NavLink></div>
+                    <div className="menu-item"><NavLink to = "/my-books">My Books</NavLink></div>
                     <button onClick={logout}>Log Out</button>
                     <div className='cart'>
-                        # of Books in Cart
+                        Books in Cart: {props.cart.length}
                     </div>
                 </div>
         )
@@ -27,10 +27,14 @@ function Menu (props) {
         return (
             <div className="menu">
                     <div className="menu-item"><NavLink to = "/">Home</NavLink></div>
+                    <div className="menu-item"><NavLink to = "/my-books">My Books</NavLink></div>
                     <div className="menu-item"><NavLink to = "/register">Register</NavLink></div>
                     <Link to = "/login">
                         <button>Log In</button>
                     </Link>
+                    <div className='cart'>
+                        Books in Cart: {props.cart.length}
+                    </div>
                 </div>
         )
     }
@@ -38,7 +42,8 @@ function Menu (props) {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.authReducer.isAuthenticated
+        isAuth: state.authReducer.isAuthenticated,
+        cart: state.cartReducer.cart
     }
 }
 
