@@ -11,6 +11,8 @@ require("dotenv").config()
 app.use(cors())
 app.use(express.json())
 
+let PORT = process.env.PORT || 8080
+
 app.get("/", (req, res) => {
     res.send("React Book App is running...")
 })
@@ -140,6 +142,6 @@ app.post("/login", async (req, res) => {
 })
 
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log('Server is running on Port 8080')
 })
