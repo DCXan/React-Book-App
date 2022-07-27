@@ -1,8 +1,0 @@
-.addBookMenu {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.addBookMenu input {
-    margin: 5px;
-}
