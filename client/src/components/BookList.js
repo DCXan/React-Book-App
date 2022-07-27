@@ -14,7 +14,7 @@ function BookList(props) {
 
     const getMyBooks = async () => {
 
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/${userID}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/books/${userID}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
