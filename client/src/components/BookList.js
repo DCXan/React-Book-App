@@ -29,7 +29,7 @@ function BookList(props) {
 
     const deleteBook = async (bookID) => {
 
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/${userID}/${bookID}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/books/${userID}/${bookID}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
