@@ -6,6 +6,8 @@ import * as actionCreators from './store/creators/actionCreators'
 
 function App(props) {
 
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
+
   const navigate = useNavigate()
 
   const token = localStorage.getItem('jwt')
@@ -26,7 +28,7 @@ function App(props) {
   const fetchBooks = async () => {
   
     try {
-      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchBox.bookSearch}&key=AIzaSyCpAycTAMnNxhMzZPiJbZL-2Z-h5rk9Xsg&maxResults=40`)
+      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchBox.bookSearch}&key=${apiKey}&maxResults=40`)
       
       const result = await response.json()
       setBooks(result.items)
@@ -95,7 +97,7 @@ function App(props) {
       return (
         <div className='bookSearch'>
           <div className='searchField'>
-            <h4>Search for a Book</h4>
+            <h2>Search for a Book</h2>
             <div>
               <input type='text' placeholder='Search for a Book' onChange={handleInput} name='bookSearch'/>
               <button onClick={fetchBooks} className="searchButton">Search</button>

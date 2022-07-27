@@ -11,6 +11,10 @@ require("dotenv").config()
 app.use(cors())
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.send("React Book App is running...")
+})
+
 app.get("/books/:userID", authenticate, async (req, res) => {
     
     const userID = req.params.userID

@@ -20,6 +20,9 @@ function Menu (props) {
 
     return (
         <div className="menu">
+            <div className='title'>
+                <h1>React Book App</h1>
+            </div>
             <div className="menu-items">
                 <NavLink to = "/">Home</NavLink>
                 { token ? <NavLink to = "/my-books">Favorite Books</NavLink> : null }
