@@ -14,7 +14,7 @@ function BookList(props) {
 
     const getMyBooks = async () => {
 
-        const response = await fetch(`http://localhost:8080/books/${userID}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/${userID}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -29,7 +29,7 @@ function BookList(props) {
 
     const deleteBook = async (bookID) => {
 
-        const response = await fetch(`http://localhost:8080/books/${userID}/${bookID}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/${userID}/${bookID}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

@@ -18,7 +18,7 @@ function Register() {
     
     const createUser = async () => {
 
-        const response = await fetch('http://localhost:8080/register', {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/register`, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'

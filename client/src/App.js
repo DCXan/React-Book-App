@@ -58,7 +58,7 @@ function App(props) {
     }
     
 
-    const response = await fetch('http://localhost:8080/books', {
+    const response = await fetch(`${process.env.REACT_APP_SERVER}/books`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
